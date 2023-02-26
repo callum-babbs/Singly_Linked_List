@@ -29,8 +29,14 @@ public:
     //Default Constructor
     LinkedList();
 
+    //Function that inserts a node at the start of the list
+    void insertNodeAtStart(int);
+
+    //Function that inserts a node at a given position in the list
+    void insertNodeAtPos(int, int);
+
     //Function that inserts a node at the end of the list
-    void insertNodeEnd(int);
+    void insertNodeAtEnd(int);
 
     //Function to print the linked list
     void printList();

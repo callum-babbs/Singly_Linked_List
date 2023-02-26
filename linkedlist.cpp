@@ -11,6 +11,11 @@ Node::Node(int data) {
 }
 
 
+LinkedList::LinkedList() {
+    head = NULL;
+}
+
+
 void LinkedList::deleteNode(int nodeOffset) {
     Node* temp1 = head;
     Node* temp2 = NULL;
@@ -61,8 +66,46 @@ void LinkedList::deleteNode(int nodeOffset) {
     delete temp1;
 }
 
-//Function to insert a new node at the end of the list
-void LinkedList::insertNodeEnd(int data) {
+
+void LinkedList::insertNodeAtStart(int data) {
+    Node* newNode = new Node(data); 
+
+    //have the new node point to what head was pointing to, then have head point to the new node
+    newNode->next = head;
+
+    head = newNode;
+
+
+}
+
+void LinkedList::insertNodeAtPos(int position, int data) {
+    Node* newNode = new Node(data);
+    Node* temp = head;
+
+    if (position < 1) {
+        std::cout << "Position must be greater than 0.\n";
+    }
+    else if (position == 1) { //inserts value at head of list
+        newNode->next = head;
+
+        head = newNode;
+
+        return;
+    }
+    else {
+        for (int i = 1; i < position - 1; i++) { //traverses through list until it finds given position
+            if (temp != NULL) {
+                temp = temp->next;
+            }
+        }
+
+        //new node points to what temp was pointing to, temp then points to the new node
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+}
+
+void LinkedList::insertNodeAtEnd(int data) {
 
     //Create the new node
     Node* newNode = new Node(data);
@@ -84,6 +127,7 @@ void LinkedList::insertNodeEnd(int data) {
     //insert at the end of list
     temp->next = newNode;
 }
+
 
 void LinkedList::printList() {
     Node* temp = head;
